@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+apply plugin: 'bintray-release'
+
+android {
+  compileSdkVersion 21
+  buildToolsVersion "21.1.2"
+
+  defaultConfig {
+    minSdkVersion 15
+    targetSdkVersion 21
+    versionCode 100
+    versionName "1.0.0"
+  }
+
+  sourceSets {
+    instrumentTest.setRoot("src/androidTest")
+  }
+}
+
+dependencies {
+  androidTestCompile('junit:junit:4.10') {
+    exclude group: 'org.hamcrest'
+  }
+}
+
+publish {
+  userOrg = 'hrules6872'
+  groupId = 'com.hrules'
+  artifactId = 'horizontalnumberpicker'
+  version = '1.0.0'
+  description = 'Horizontal Number Picker'
+  website = 'https://github.com/hrules6872/HorizontalNumberPicker'
+  repository = "https://github.com/hrules6872/HorizontalNumberPicker.git"
+}

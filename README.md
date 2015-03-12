@@ -12,11 +12,11 @@ dependencies {
 
 Developed by
 -------
-Héctor de Isidro [![Twitter](http://img.shields.io/badge/contact-@h_rules-blue.svg?style=flat)](http://twitter.com/h_rules)
+Héctor de Isidro - hrules6872 [![Twitter](http://img.shields.io/badge/contact-@h_rules-blue.svg?style=flat)](http://twitter.com/h_rules)
 
 License
 -------
-    Copyright 2015 hrules6872
+    Copyright 2015 Héctor de Isidro - hrules6872
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

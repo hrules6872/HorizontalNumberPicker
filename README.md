@@ -1,6 +1,6 @@
 HorizontalNumberPicker
 =====
-![image](screenshot-example.png)
+![image](screenshot-demo.png)
 
 ##Importing to your project
 Add this dependency to your build.gradle file:

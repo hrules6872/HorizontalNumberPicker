@@ -1,17 +1,22 @@
 package com.hules.horizontalnumberpicker.demo;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
 import com.hrules.horizontalnumberpicker.HorizontalNumberPicker;
+import com.hrules.horizontalnumberpicker.HorizontalNumberPickerListener;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity implements HorizontalNumberPickerListener {
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        HorizontalNumberPicker horizontalNumberPicker1 = (HorizontalNumberPicker) findViewById(R.id.horizontal_number_picker1);
         HorizontalNumberPicker horizontalNumberPicker2 = (HorizontalNumberPicker) findViewById(R.id.horizontal_number_picker2);
         HorizontalNumberPicker horizontalNumberPicker3 = (HorizontalNumberPicker) findViewById(R.id.horizontal_number_picker3);
 
@@ -24,5 +29,25 @@ public class MainActivity extends ActionBarActivity {
         horizontalNumberPicker3.getTextValueView().setTextColor(getResources().getColor(android.R.color.holo_red_light));
         horizontalNumberPicker3.getTextValueView().setTextSize(22);
 
+        horizontalNumberPicker1.setListener(this);
+        horizontalNumberPicker2.setListener(this);
+        horizontalNumberPicker3.setListener(this);
+    }
+
+    @Override
+    public void onHorizontalNumberPickerChanged(HorizontalNumberPicker horizontalNumberPicker, int value) {
+        switch (horizontalNumberPicker.getId()) {
+            case R.id.horizontal_number_picker1:
+                Log.d(TAG, "horizontal_number_picker1 current value:" + value);
+                break;
+
+            case R.id.horizontal_number_picker2:
+                Log.d(TAG, "horizontal_number_picker2 current value: " + value);
+                break;
+
+            case R.id.horizontal_number_picker3:
+                Log.d(TAG, "horizontal_number_picker3 current value: " + value);
+                break;
+        }
     }
 }

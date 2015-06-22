@@ -101,6 +101,7 @@ public class HorizontalNumberPicker extends LinearLayout {
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutInflater.inflate(R.layout.horizontal_number_picker, this);
 
+
         stepSize = DEFAULT_STEP_SIZE;
         minValue = DEFAULT_MIN_VALUE;
         maxValue = DEFAULT_MAX_VALUE;
@@ -282,8 +283,8 @@ public class HorizontalNumberPicker extends LinearLayout {
         this.updateInterval = intervalMillis;
     }
 
-    public void setHorizontalNumberPickerListener(HorizontalNumberPickerListener horizontalNumberPickerListener) {
-        listener = horizontalNumberPickerListener;
+    public void setListener(HorizontalNumberPickerListener listener) {
+        this.listener = listener;
     }
 
     class repeat implements Runnable {

@@ -2,14 +2,14 @@ apply plugin: 'com.android.library'
 apply plugin: 'bintray-release'
 
 android {
-  compileSdkVersion 21
+  compileSdkVersion 22
   buildToolsVersion "22.0.1"
 
   defaultConfig {
     minSdkVersion 15
-    targetSdkVersion 21
-    versionCode 100
-    versionName "1.0.0"
+    targetSdkVersion 22
+    versionCode 110
+    versionName "1.1.0"
   }
 
   sourceSets {
@@ -27,7 +27,7 @@ publish {
   userOrg = 'hrules6872'
   groupId = 'com.hrules'
   artifactId = 'horizontalnumberpicker'
-  version = '1.0.0'
+  version = '1.1.0'
   description = 'Horizontal Number Picker'
   website = 'https://github.com/hrules6872/HorizontalNumberPicker'
   repository = "https://github.com/hrules6872/HorizontalNumberPicker.git"

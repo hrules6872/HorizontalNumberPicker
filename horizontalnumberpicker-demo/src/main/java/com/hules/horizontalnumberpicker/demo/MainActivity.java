@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements HorizontalNumberP
         HorizontalNumberPicker horizontalNumberPicker2 = (HorizontalNumberPicker) findViewById(R.id.horizontal_number_picker2);
         HorizontalNumberPicker horizontalNumberPicker3 = (HorizontalNumberPicker) findViewById(R.id.horizontal_number_picker3);
 
+        horizontalNumberPicker1.setMaxValue(5);
+
         horizontalNumberPicker2.getButtonMinusView().setText("<");
         horizontalNumberPicker2.getButtonPlusView().setText(">");
         horizontalNumberPicker2.setShowLeadingZeros(true);

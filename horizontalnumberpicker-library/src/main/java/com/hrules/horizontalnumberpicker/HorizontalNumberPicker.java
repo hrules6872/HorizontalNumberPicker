@@ -1,7 +1,10 @@
 package com.hrules.horizontalnumberpicker;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,17 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class HorizontalNumberPicker extends LinearLayout {
-  private final static int DEFAULT_VALUE = 0;
-  private final static int DEFAULT_MIN_VALUE = 0;
-  private final static int DEFAULT_MAX_VALUE = 999;
-  private final static int DEFAULT_STEP_SIZE = 1;
-  private final static boolean DEFAULT_SHOW_LEADING_ZEROS = false;
-
   private final static int MIN_UPDATE_INTERVAL = 50;
-  private final static int DEFAULT_UPDATE_INTERVAL = 100;
-
-  private final static String DEFAULT_BUTTON_MINUS_TEXT = "-";
-  private final static String DEFAULT_BUTTON_PLUS_TEXT = "+";
 
   private int value;
   private int maxValue;
@@ -53,74 +46,70 @@ public class HorizontalNumberPicker extends LinearLayout {
 
   public HorizontalNumberPicker(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    if (!isInEditMode()) {
-      init(context);
-      parseAttrs(context, attrs);
-    }
+    init(context, attrs);
   }
 
-  private void parseAttrs(Context context, AttributeSet attrs) {
-    TypedArray typedArray =
-        context.obtainStyledAttributes(attrs, R.styleable.HorizontalNumberPicker);
-    if (typedArray == null) {
+  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+  public HorizontalNumberPicker(Context context, AttributeSet attrs, int defStyleAttr,
+      int defStyleRes) {
+    super(context, attrs, defStyleAttr, defStyleRes);
+    init(context, attrs);
+  }
+
+  private void init(Context context, AttributeSet attrs) {
+    if (isInEditMode()) {
       return;
     }
 
-    for (int i = 0; i < typedArray.getIndexCount(); i++) {
-      int attr = typedArray.getIndex(i);
-      if (attr == R.styleable.HorizontalNumberPicker_plusButtonText) {
-        buttonPlus.setText(typedArray.getString(attr));
-      } else if (attr == R.styleable.HorizontalNumberPicker_minusButtonText) {
-        buttonMinus.setText(typedArray.getString(attr));
-      } else if (attr == R.styleable.HorizontalNumberPicker_minValue) {
-        minValue = typedArray.getInt(attr, DEFAULT_MIN_VALUE);
-      } else if (attr == R.styleable.HorizontalNumberPicker_maxValue) {
-        maxValue = typedArray.getInt(attr, DEFAULT_MAX_VALUE);
-      } else if (attr == R.styleable.HorizontalNumberPicker_value) {
-        value = typedArray.getInt(attr, DEFAULT_VALUE);
-        this.setValue();
-      } else if (attr == R.styleable.HorizontalNumberPicker_repeatDelay) {
-        updateInterval = typedArray.getInt(attr, DEFAULT_UPDATE_INTERVAL);
-      } else if (attr == R.styleable.HorizontalNumberPicker_stepSize) {
-        stepSize = typedArray.getInt(attr, DEFAULT_STEP_SIZE);
-      } else if (attr == R.styleable.HorizontalNumberPicker_showLeadingZeros) {
-        showLeadingZeros = typedArray.getBoolean(attr, DEFAULT_SHOW_LEADING_ZEROS);
-      }
-    }
-    typedArray.recycle();
-  }
-
-  private void init(Context context) {
     LayoutInflater layoutInflater =
         (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     layoutInflater.inflate(R.layout.horizontal_number_picker, this);
 
-    stepSize = DEFAULT_STEP_SIZE;
-    minValue = DEFAULT_MIN_VALUE;
-    maxValue = DEFAULT_MAX_VALUE;
-    showLeadingZeros = DEFAULT_SHOW_LEADING_ZEROS;
+    TypedArray typedArray =
+        context.obtainStyledAttributes(attrs, R.styleable.HorizontalNumberPicker);
+    Resources res = getResources();
+
+    String buttonPlusText = typedArray.getString(R.styleable.HorizontalNumberPicker_plusButtonText);
+    initButtonPlus(
+        buttonPlusText != null ? buttonPlusText : res.getString(R.string.defaultButtonPlus));
+
+    String buttonMinusText =
+        typedArray.getString(R.styleable.HorizontalNumberPicker_minusButtonText);
+    initButtonMinus(
+        buttonMinusText != null ? buttonMinusText : res.getString(R.string.defaultButtonMinus));
+
+    minValue = typedArray.getInt(R.styleable.HorizontalNumberPicker_minValue,
+        res.getInteger(R.integer.default_minValue));
+    maxValue = typedArray.getInt(R.styleable.HorizontalNumberPicker_maxValue,
+        res.getInteger(R.integer.default_maxValue));
+
+    updateInterval = typedArray.getInt(R.styleable.HorizontalNumberPicker_repeatDelay,
+        res.getInteger(R.integer.default_updateInterval));
+    stepSize = typedArray.getInt(R.styleable.HorizontalNumberPicker_stepSize,
+        res.getInteger(R.integer.default_stepSize));
+    showLeadingZeros = typedArray.getBoolean(R.styleable.HorizontalNumberPicker_showLeadingZeros,
+        res.getBoolean(R.bool.default_showLeadingZeros));
+
+    initTextValue();
+    value = typedArray.getInt(R.styleable.HorizontalNumberPicker_value,
+        res.getInteger(R.integer.default_value));
+    typedArray.recycle();
+
+    this.setValue();
 
     autoIncrement = false;
     autoDecrement = false;
 
-    updateInterval = DEFAULT_UPDATE_INTERVAL;
     updateIntervalHandler = new Handler();
-
-    initButtonMinus();
-    initButtonPlus();
-    initTextValue();
-
-    value = DEFAULT_VALUE;
-    this.setValue();
   }
 
   private void initTextValue() {
     textValue = (TextView) findViewById(R.id.text_value);
   }
 
-  private void initButtonPlus() {
+  private void initButtonPlus(String text) {
     buttonPlus = (Button) findViewById(R.id.button_plus);
-    buttonPlus.setText(DEFAULT_BUTTON_PLUS_TEXT);
+    buttonPlus.setText(text);
 
     buttonPlus.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
@@ -146,9 +135,9 @@ public class HorizontalNumberPicker extends LinearLayout {
     });
   }
 
-  private void initButtonMinus() {
+  private void initButtonMinus(String text) {
     buttonMinus = (Button) findViewById(R.id.button_minus);
-    buttonMinus.setText(DEFAULT_BUTTON_MINUS_TEXT);
+    buttonMinus.setText(text);
 
     buttonMinus.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
@@ -276,7 +265,7 @@ public class HorizontalNumberPicker extends LinearLayout {
     this.listener = listener;
   }
 
-  class repeat implements Runnable {
+  private class repeat implements Runnable {
     public void run() {
       if (autoIncrement) {
         increment();

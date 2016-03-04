@@ -1,18 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion 22
-  buildToolsVersion "22.0.1"
+  compileSdkVersion androidBuildCompileSDKVersion
+  buildToolsVersion androidBuildToolsVersion
 
   defaultConfig {
-    minSdkVersion 15
-    targetSdkVersion 22
-    versionCode 110
-    versionName "1.1.0"
+    applicationId "com.hules.horizontalnumberpicker.demo"
+    minSdkVersion androidBuildMinSDKVersion
+    targetSdkVersion androidBuildTargetSDKVersion
+    versionCode 100
+    versionName "1.0.0"
   }
 }
 
 dependencies {
   compile project(":horizontalnumberpicker-library")
-  compile 'com.android.support:appcompat-v7:22.2.0'
+  compile supportDependencies.appCompat
+  compile supportDependencies.supportAnnotations
 }

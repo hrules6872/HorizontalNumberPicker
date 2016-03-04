@@ -2,21 +2,21 @@ package com.hules.horizontalnumberpicker.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.hrules.horizontalnumberpicker.HorizontalNumberPicker;
 import com.hrules.horizontalnumberpicker.HorizontalNumberPickerListener;
 import com.hules.horizontalnumberpicker.demo.commons.DebugLog;
 
 public class MainActivity extends AppCompatActivity implements HorizontalNumberPickerListener {
+  @Bind(R.id.horizontal_number_picker1) HorizontalNumberPicker horizontalNumberPicker1;
+  @Bind(R.id.horizontal_number_picker2) HorizontalNumberPicker horizontalNumberPicker2;
+  @Bind(R.id.horizontal_number_picker3) HorizontalNumberPicker horizontalNumberPicker3;
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
-    HorizontalNumberPicker horizontalNumberPicker1 =
-        (HorizontalNumberPicker) findViewById(R.id.horizontal_number_picker1);
-    HorizontalNumberPicker horizontalNumberPicker2 =
-        (HorizontalNumberPicker) findViewById(R.id.horizontal_number_picker2);
-    HorizontalNumberPicker horizontalNumberPicker3 =
-        (HorizontalNumberPicker) findViewById(R.id.horizontal_number_picker3);
+    ButterKnife.bind(this);
 
     horizontalNumberPicker1.setMaxValue(5);
 

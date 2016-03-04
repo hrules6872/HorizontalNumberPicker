@@ -16,5 +16,5 @@ android {
 dependencies {
   compile project(":horizontalnumberpicker-library")
   compile supportDependencies.appCompat
-  compile supportDependencies.supportAnnotations
+  compile projectDependencies.butterKnife
 }

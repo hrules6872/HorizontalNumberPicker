@@ -2,15 +2,11 @@ package com.hules.horizontalnumberpicker.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
 import com.hrules.horizontalnumberpicker.HorizontalNumberPicker;
 import com.hrules.horizontalnumberpicker.HorizontalNumberPickerListener;
-
+import com.hules.horizontalnumberpicker.demo.commons.DebugLog;
 
 public class MainActivity extends AppCompatActivity implements HorizontalNumberPickerListener {
-    private static final String TAG = "MainActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +36,15 @@ public class MainActivity extends AppCompatActivity implements HorizontalNumberP
     public void onHorizontalNumberPickerChanged(HorizontalNumberPicker horizontalNumberPicker, int value) {
         switch (horizontalNumberPicker.getId()) {
             case R.id.horizontal_number_picker1:
-                Log.d(TAG, "horizontal_number_picker1 current value:" + value);
+                DebugLog.d("horizontal_number_picker1 current value:" + value);
                 break;
 
             case R.id.horizontal_number_picker2:
-                Log.d(TAG, "horizontal_number_picker2 current value: " + value);
+                DebugLog.d("horizontal_number_picker2 current value: " + value);
                 break;
 
             case R.id.horizontal_number_picker3:
-                Log.d(TAG, "horizontal_number_picker3 current value: " + value);
+                DebugLog.d("horizontal_number_picker3 current value: " + value);
                 break;
         }
     }

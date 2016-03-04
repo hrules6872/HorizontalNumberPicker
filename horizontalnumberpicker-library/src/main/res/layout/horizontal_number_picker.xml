@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    >
+>
 
   <Button
       android:id="@+id/button_minus"
@@ -12,7 +12,7 @@
       android:layout_height="wrap_content"
       tools:text="-"
       style="?android:attr/borderlessButtonStyle"
-      />
+  />
 
   <TextView
       android:id="@+id/text_value"
@@ -21,7 +21,7 @@
       android:gravity="center"
       android:layout_gravity="center"
       tools:text="0"
-      />
+  />
 
   <Button
       android:id="@+id/button_plus"
@@ -29,5 +29,5 @@
       android:layout_height="wrap_content"
       tools:text="+"
       style="?android:attr/borderlessButtonStyle"
-      />
+  />
 </LinearLayout>

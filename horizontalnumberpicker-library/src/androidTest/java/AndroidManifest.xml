@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
-    package="com.hrules.horizontalnumberpicker.test"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    >
-
+    package="com.hrules.horizontalnumberpicker.test"
+>
   <application>
     <uses-library android:name="android.test.runner"/>
-
   </application>
-
 </manifest>

@@ -1,15 +1,15 @@
 ext {
-  androidBuildToolsVersion = '23.0.2'
+  androidBuildToolsVersion = '25.0.2'
   androidBuildMinSDKVersion = '15'
-  androidBuildTargetSDKVersion = '23'
-  androidBuildCompileSDKVersion = 'android-23'
+  androidBuildTargetSDKVersion = '25'
+  androidBuildCompileSDKVersion = 'android-25'
 
   // internal
   libraryVersionCode = 1110
   libraryVersionName = '1.1.1'
 
   // support libraries
-  supportLibraryVersion = '23.2.+'
+  supportLibraryVersion = '25.1.+'
   supportDependencies = [appCompat: "com.android.support:appcompat-v7:${supportLibraryVersion}"]
 
   // test dependencies

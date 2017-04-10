@@ -2,7 +2,7 @@ HorizontalNumberPicker
 =====
 ![image](screenshot-demo.png)
 
-##Importing to your project
+### Importing to your project
 Add this dependency to your build.gradle file:
 ```java
 dependencies {
